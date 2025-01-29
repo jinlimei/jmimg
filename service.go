@@ -5,16 +5,14 @@ import (
 )
 
 type Service struct {
-	cfg           aws.Config
-	bucketName    string
-	cdnUrl        string
+	awsCfg        aws.Config
+	cfg           *Config
 	nameGenerator UploadNameGenerator
 }
 
-func New(cfg aws.Config, bucketName, cdnUrl string) *Service {
+func New(awsCfg aws.Config, cfg *Config) *Service {
 	return &Service{
-		cfg:        cfg,
-		bucketName: bucketName,
-		cdnUrl:     cdnUrl,
+		awsCfg: awsCfg,
+		cfg:    cfg,
 	}
 }

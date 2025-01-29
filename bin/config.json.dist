@@ -1,0 +1,9 @@
+{
+  "aws_profile": "default",
+  "aws_region": "us-east-1",
+  "bucket_name": "example",
+  "cdn_url": "bananananananana.cloudfront.example.net",
+  "convert_to_jpeg": true,
+  "max_width": 1920,
+  "max_height": 1080
+}

@@ -16,7 +16,7 @@ dep:
 	@go mod verify
 
 build: dep
-	@go build -o bin/jmimg -compiler gc -ldflags="-s -w" cmd/jmimg/*.go
+	@/bin/bash ./scripts/build.sh
 
 clean:
 	@rm -f bin/jmimg

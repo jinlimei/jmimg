@@ -1,15 +1,19 @@
 package main
 
 import (
+	"fmt"
 	"math/rand/v2"
-	"path/filepath"
 	"time"
 )
 
 var space = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
 
-func fileGen(input string) string {
-	ext := filepath.Ext(input)
+func fileGen(input string, mimeType string) string {
+	if len(input) == 0 {
+		panic("fileGen: input is empty")
+	}
+
+	fmt.Println("FileGen, input", input, mimeType)
 
 	var (
 		sLen = len(input)
@@ -19,9 +23,30 @@ func fileGen(input string) string {
 
 	out[0] = 'j'
 
-	for i := 1; i < 8; i++ {
-		out[i] = space[rng.IntN(sLen)]
+	for pos := 1; pos < 8; pos++ {
+		out[pos] = space[rng.IntN(sLen)]
 	}
 
-	return string(out) + ext
+	return string(out) + mimeToExt(mimeType)
+}
+
+func mimeToExt(mimeType string) string {
+	var ext string
+
+	switch mimeType {
+	case "image/jpeg":
+		ext = ".jpg"
+	case "image/png":
+		ext = ".png"
+	case "image/gif":
+		ext = ".gif"
+	case "image/bmp":
+		ext = ".bmp"
+	case "image/tiff":
+		ext = ".tiff"
+	case "image/webp":
+		ext = ".webp"
+	}
+
+	return ext
 }
