@@ -15,6 +15,6 @@ LDFLAGS="${LDFLAGS} -X main.Version=$VERSION"
 
 PATH="$PATH:/usr/lib/llvm/19/bin/" \
   CC="clang-19" \
-  go build -o bin/jmimg -compiler gc -ldflags "${LDFLAGS}" ./cmd/jmimg
+  go install -compiler gc -ldflags "${LDFLAGS}" ./cmd/jmimg
 
 echo "BUILT AT $BUILD_TIME"
