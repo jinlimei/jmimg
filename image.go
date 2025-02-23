@@ -1,6 +1,7 @@
 package jmimg
 
 import (
+	"image"
 	"io"
 	"os"
 )
@@ -10,6 +11,9 @@ type ImageToUpload struct {
 
 	Original         *os.File
 	OriginalMimeType string
+
+	Stat          os.FileInfo
+	OriginalImage image.Image
 
 	Converted io.Reader
 
@@ -42,6 +46,12 @@ func NewImageUpload(fileName string, file *os.File) (*ImageToUpload, error) {
 	}
 
 	err := itu.determineMimeType()
+
+	if err != nil {
+		return nil, err
+	}
+
+	err = itu.parseImageMetadata()
 
 	if err != nil {
 		return nil, err
