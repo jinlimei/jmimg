@@ -13,8 +13,9 @@ LDFLAGS="${LDFLAGS} -X main.GoVersion=$GO_VERSION"
 LDFLAGS="${LDFLAGS} -X main.GitTag=$TAG"
 LDFLAGS="${LDFLAGS} -X main.Version=$VERSION"
 
-PATH="$PATH:/usr/lib/llvm/19/bin/" \
-  CC="clang-19" \
+CLANG_VER="20"
+PATH="$PATH:/usr/lib/llvm/${CLANG_VER}/bin/" \
+  CC="clang-${CLANG_VER}" \
   go build -o bin/jmimg -compiler gc -ldflags "${LDFLAGS}" ./cmd/jmimg
 
 echo "BUILT AT $BUILD_TIME"
